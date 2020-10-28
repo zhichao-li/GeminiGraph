@@ -138,8 +138,12 @@ int main(int argc, char ** argv) {
 
   Graph<Empty> * graph;
   graph = new Graph<Empty>();
-  graph->load_directed(argv[1], std::atoi(argv[2]));
-  int iterations = std::atoi(argv[3]);
+
+//  printf("vertices: %s\n", std::atoi(argv[2]));
+//  printf("iterations: %s\n", std::atoi(argv[3]));
+// argv[1] is ?pagerank??!!!
+graph->load_directed("./test.3", 2);
+  int iterations = 3;
 
   compute(graph, iterations);
   for (int run=0;run<5;run++) {

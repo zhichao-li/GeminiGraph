@@ -16,7 +16,7 @@ Copyright (c) 2015-2016 Xiaowei Zhu, Tsinghua University
 
 #ifndef TYPE_HPP
 #define TYPE_HPP
-
+#define PRINT_DEBUG_MESSAGES
 #include <stdint.h>
 
 struct Empty { };

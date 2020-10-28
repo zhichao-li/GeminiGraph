@@ -141,10 +141,11 @@ public:
   MessageBuffer *** recv_buffer; // MessageBuffer* [partitions] [sockets]; numa-aware
 
   Graph() {
-    threads = numa_num_configured_cpus();
-    sockets = numa_num_configured_nodes();
+    threads = 4 ; //numa_num_configured_cpus();
+    sockets = 1 ; //numa_num_configured_nodes();
     threads_per_socket = threads / sockets;
-
+    printf("sockets %d", sockets);
+    printf("threads %d", threads);
     init();
   }
 
@@ -170,6 +171,8 @@ public:
       nodestring[s_i*2-1] = ',';
       nodestring[s_i*2] = '0'+s_i;
     }
+    printf("nodestring %s", nodestring);
+    fflush(stdout);
     struct bitmask * nodemask = numa_parse_nodestring(nodestring);
     numa_set_interleave_mask(nodemask);
 
@@ -354,7 +357,7 @@ public:
     symmetric = true;
 
     MPI_Datatype vid_t = get_mpi_data_type<VertexId>();
-
+    
     this->vertices = vertices;
     long total_bytes = file_size(path.c_str());
     this->edges = total_bytes / edge_unit_size;
